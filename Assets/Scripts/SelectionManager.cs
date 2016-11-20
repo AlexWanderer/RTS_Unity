@@ -20,7 +20,7 @@ public class SelectionManager : MonoBehaviour {
             if (Physics.Raycast(ray, out hitInfo, 50f, buildingLayerMask))
             {
                 // Deselect previous object if it's not null
-                if (selectedObject)
+                if (selectedObject != null)
                     selectedObject.GetComponent<BuildingBehavior>().Deselect();
                 selectedObject = hitInfo.transform.gameObject;
                 selectedObject.GetComponent<BuildingBehavior>().Select();
