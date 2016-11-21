@@ -5,6 +5,7 @@ public class SelectionManager : MonoBehaviour {
     public Camera MainCamera;
 
     private const int buildingLayerMask = 1 << 9;
+    private const int unitLayerMask = 1 << 10;
     private GameObject selectedObject;
 
 	// Use this for initialization
@@ -17,13 +18,13 @@ public class SelectionManager : MonoBehaviour {
         {
             RaycastHit hitInfo;
             Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hitInfo, 50f, buildingLayerMask))
+            if (Physics.Raycast(ray, out hitInfo, 50f, buildingLayerMask | unitLayerMask))
             {
                 // Deselect previous object if it's not null
                 if (selectedObject != null)
-                    selectedObject.GetComponent<BuildingBehavior>().Deselect();
+                    selectedObject.GetComponent<SelectableObject>().Deselect();
                 selectedObject = hitInfo.transform.gameObject;
-                selectedObject.GetComponent<BuildingBehavior>().Select();
+                selectedObject.GetComponent<SelectableObject>().Select();
             }
         }
 	}
