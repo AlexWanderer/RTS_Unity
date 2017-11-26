@@ -17,13 +17,13 @@ public class BuildManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (activeObject)
+        if (activeObject != null)
         {
             RaycastHit hit;
             Ray ray = MainCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out hit, 50f, groundLayerMask))
+            if (Physics.Raycast(ray, out hit, 50.0f, groundLayerMask))
             {
-                Vector3 groundedHit = new Vector3(hit.point.x, 0.75f, hit.point.z);
+                Vector3 groundedHit = new Vector3(hit.point.x, 0.25f, hit.point.z);
                 activeObject.transform.position = groundedHit;
 
                 if (Input.GetMouseButtonDown(0))
@@ -38,5 +38,5 @@ public class BuildManager : MonoBehaviour {
     {
         activeObject = GameObject.Instantiate<GameObject>(BasePrefab);
         activeObject.transform.position = MainCamera.ScreenToWorldPoint(Input.mousePosition);
-    }
+   }
 }
