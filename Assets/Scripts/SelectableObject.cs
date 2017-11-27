@@ -1,23 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Assets.Menu;
+using System.Linq;
 
 public class SelectableObject : MonoBehaviour {
-    public readonly Color HighlightColor = Color.grey;
-
-    private Color starterColor;
-    private bool selected;
     public bool Selected { get { return selected; } }
+    public readonly Color HighlightColor = Color.grey;
     public GameObject Menu;
+    public ButtonBinding ButtonBindings;
 
-	// Use this for initialization
-	void Start () {
+    private BuildingBehavior buildingBehaviorRef;
+    private bool selected;
+    private Color starterColor;
+
+	void Start()
+    {
         starterColor = gameObject.GetComponent<Renderer>().material.color;
+        buildingBehaviorRef = gameObject.GetComponent<BuildingBehavior>();
         Menu = GameObject.Instantiate<GameObject>(Menu);
         Menu.SetActive(false);
-	}
-	// Update is called once per frame
-	void Update () {
+        //foreach (var binding in ButtonBindings)
+        //{
+        //    binding.Button.onClick.AddListener(binding.ClickAction);
+        //}
 	}
     public void Select()
     {

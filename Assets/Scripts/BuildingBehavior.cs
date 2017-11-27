@@ -20,7 +20,7 @@ public class BuildingBehavior : MonoBehaviour {
             if (heroBuildTimer >= HeroSpawnTime) { SpawnHero(); }
         }
     }
-    void SpawnHero()
+    public void SpawnHero()
     {
         GameObject hero = GameObject.Instantiate<GameObject>(HeroRef);
         hero.transform.position = new Vector3(2f, 0, 2f) + gameObject.transform.position;
